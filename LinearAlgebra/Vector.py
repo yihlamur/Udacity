@@ -40,19 +40,26 @@ class Vector(object):
     def hello_print(self):
         print('hello')
 
-    def dot(self, v)
+    def dot(self, v):
         return sum([x * y for x,y in zip(self.coordinates, v.coordinates)])
     
-        def angle_with()
+    def angle_with(self, v, in_degrees=False):
+        try:
+            u1 = self.normalized()
+            u2 = v.normalized()
+            angle_in_radians = acos(u1.dot(u2))
 
-#TODO(yigit): code quiz 8
+            if in_degrees:
+                degrees_per_radian = 180. / pi
+                return angle_in_radians * degrees_per_radian
+            else:
+                return angle_in_radians
+        except Exception as e:
+            if str(e) == self.CANNOT_NORMALIZE_ZERO_VECTOR_MSG:
+                raise Exception('Cannot compute an angle with the zero vector')
+            else:
+                raise e
 
-    #def dot_product(self, otherVector):
-        #dot_p = Vector(self)
-        #if len(self.coordinates) == len(otherVector.coordinates):
-        #    for i in xrange(len(self.coordinates)):
-        #        dot_p[i] = [self.coordinates[i] * otherVector.coordinates[i]]
-        #return dot_p
 
 my_vector = Vector([3, 4])
 
